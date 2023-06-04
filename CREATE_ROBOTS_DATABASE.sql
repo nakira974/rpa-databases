@@ -1,20 +1,20 @@
 -- Creates a new database called "Robots"
-CREATE DATABASE "Robots"
+CREATE DATABASE "Robots_Staging"
     WITH
     OWNER = postgres          -- sets the owner of the database as "postgres"
-    ENCODING = 'WIN1252'      -- sets the character encoding of the database
-    LC_COLLATE = 'French_France.1252'  -- sets the collation rules for sorting strings
-    LC_CTYPE = 'French_France.1252'    -- sets the character classification rules
+    ENCODING = 'UTF8'      -- sets the character encoding of the database
+    LC_COLLATE = 'English_Australia.1252'  -- sets the collation rules for sorting strings
+    LC_CTYPE = 'English_Australia.1252'    -- sets the character classification rules
     TABLESPACE = pg_default   -- declares the default tablespace where tables will be created
     CONNECTION LIMIT = 256;   -- sets a limit on the number of concurrent connections to the database
 
 -- Adds a description to the database
-COMMENT ON DATABASE "Robots"
+COMMENT ON DATABASE "Robots_Staging"
     IS 'RPA job execution logging and scheduling database';
 
 -- Switches to the newly created database
 BEGIN;
-\c "Robots";
+\c "Robots_Staging";
 
 -- Creates sequences for generating unique IDs for the tables
 CREATE SEQUENCE IF NOT EXISTS robot_id_seq;
