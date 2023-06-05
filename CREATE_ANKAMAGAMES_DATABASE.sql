@@ -70,4 +70,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION refresh_user_characters()
+  RETURNS trigger AS
+$$
+BEGIN
+  REFRESH MATERIALIZED VIEW user_characters;
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER tr_refresh_user_characters
+AFTER INSERT OR UPDATE OR DELETE ON accounts
+  FOR EACH STATEMENT
+  EXECUTE FUNCTION refresh_user_characters();
+
+CREATE OR REPLACE TRIGGER tr_refresh_user_characters2
+AFTER INSERT OR UPDATE OR DELETE ON characters
+  FOR EACH STATEMENT
+  EXECUTE FUNCTION refresh_user_characters();
 COMMIT;
