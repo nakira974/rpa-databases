@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Main Keycloak" uuid="6c509079-d8c9-4bbd-b5ae-c1ca296cc22f">
+    <data-source source="LOCAL" name="Keycloak@monitor.lkh.coffee" uuid="6c509079-d8c9-4bbd-b5ae-c1ca296cc22f">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/keycloak</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Local Postgres" uuid="21ffc10b-56ae-4ebc-8488-ed863c8b2625">
+    <data-source source="LOCAL" name="AnkamaGames@localhost" uuid="ffc49f08-7ac8-4bf1-b7b5-c0f75b666c24">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/Robots</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:6432/AnkamaGames</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Robots@localhost" uuid="dea2ccb6-6b03-4236-a0ea-cf6cd5106716">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:6432/Robots</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Robots_Staging@localhost" uuid="c07b904b-6fc2-450e-ac91-0a2909739e1c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:6432/Robots_Staging</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
