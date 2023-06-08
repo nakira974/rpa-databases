@@ -79,12 +79,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER tr_refresh_user_characters
+CREATE OR REPLACE TRIGGER tr_accounts_refresh_user_characters
 AFTER INSERT OR UPDATE OR DELETE ON accounts
   FOR EACH STATEMENT
   EXECUTE FUNCTION refresh_user_characters();
 
-CREATE OR REPLACE TRIGGER tr_refresh_user_characters2
+CREATE OR REPLACE TRIGGER tr_characters_refresh_user_characters
 AFTER INSERT OR UPDATE OR DELETE ON characters
   FOR EACH STATEMENT
   EXECUTE FUNCTION refresh_user_characters();
