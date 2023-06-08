@@ -1,5 +1,5 @@
 -- Set default encoding and locale to English_Australia.1752
-CREATE DATABASE AnkamaGames
+CREATE DATABASE ankama_games
     WITH
     OWNER = postgres          -- sets the owner of the database as "postgres"
     ENCODING = 'UTF8'      -- sets the character encoding of the database
@@ -9,21 +9,22 @@ CREATE DATABASE AnkamaGames
     CONNECTION LIMIT = 256;   -- sets a limit on the number of concurrent connections to the database
 
 -- Adds a description to the database
-COMMENT ON DATABASE "AnkamaGames"
+COMMENT ON DATABASE "ankama_games"
     IS 'Ankama Games accounts and related content database';
 
 
 BEGIN;
 
-\c "AnkamaGames";
+\c "ankama_games";
 
 
-CREATE SEQUENCE IF NOT EXISTS accounts_id_seq START 1;
 -- Create sequence for accounts table id
 CREATE SEQUENCE IF NOT EXISTS accounts_id_seq START 1;
-
 -- Create sequence for characters table id
 CREATE SEQUENCE IF NOT EXISTS characters_id_seq START 1;
+-- Create sequence for games table id
+CREATE SEQUENCE IF NOT EXISTS games_id_seq START 1;
+
 
 -- Create accounts table
 CREATE TABLE IF NOT EXISTS accounts (
@@ -37,9 +38,14 @@ CREATE TABLE IF NOT EXISTS characters (
     id BIGINT PRIMARY KEY DEFAULT nextval('characters_id_seq'),
     name VARCHAR(255) NOT NULL,
     class VARCHAR(255) NOT NULL,
-    owner BIGINT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE
+    owner BIGINT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+    game  BIGINT NOT NULL REFERENCES games(id)
 );
 
+CREATE TABLE IF NOT EXISTS games(
+    id BIGINT PRIMARY KEY DEFAULT nextval('games_id_seq'),
+    name VARCHAR(255) NOT NULL
+);
 
 
 -- Create materialized view for user characters
