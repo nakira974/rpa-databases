@@ -80,21 +80,21 @@ CREATE INDEX IF NOT EXISTS idx_log_status_code ON logs(status_code);
 CREATE INDEX IF NOT EXISTS idx_fts_content ON fts USING gin(fts_content);
 
 -- Creates a function for adding a new job to the database
-CREATE OR REPLACE FUNCTION add_job(job_name TEXT, job_description TEXT, job_priority TEXT,
-                                   job_schedule_time TIMESTAMP, robot_id INTEGER)
+CREATE OR REPLACE FUNCTION add_job(pJob_name TEXT, pJob_description TEXT, pJob_priority TEXT,
+                                   pJob_schedule_time TIMESTAMP, pRobot_id INTEGER)
 RETURNS INTEGER AS $$
 DECLARE
-  job_id INTEGER;
+  currentJobId INTEGER;
 BEGIN
   INSERT INTO jobs(job_name, job_description, job_priority, job_schedule_time, robot_id)
-  VALUES(job_name, job_description, job_priority, job_schedule_time, robot_id)
-  RETURNING job_id INTO job_id;
+  VALUES(pJob_name, pJob_description, pJob_priority, pJob_schedule_time, pRobot_id)
+  RETURNING job_id INTO currentJobId;
 
   -- Adds the new job to the full-text search table
   INSERT INTO fts(fts_content, job_id)
-  SELECT TO_TSVECTOR('english', job_description), job_id;
+  SELECT TO_TSVECTOR('english', pJob_description), currentJobId;
 
-  RETURN job_id;
+  RETURN currentJobId;
 END;
 $$ LANGUAGE plpgsql;
 
