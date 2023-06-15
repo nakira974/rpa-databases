@@ -3,8 +3,8 @@ CREATE DATABASE "Robots_Staging"
     WITH
     OWNER = postgres          -- sets the owner of the database as "postgres"
     ENCODING = 'UTF8'      -- sets the character encoding of the database
-    LC_COLLATE = 'English_Australia.1252'  -- sets the collation rules for sorting strings
-    LC_CTYPE = 'English_Australia.1252'    -- sets the character classification rules
+    LC_COLLATE = 'French_France.1252'  -- sets the collation rules for sorting strings
+    LC_CTYPE = 'French_France.1252'    -- sets the character classification rules
     TABLESPACE = pg_default   -- declares the default tablespace where tables will be created
     CONNECTION LIMIT = 256;   -- sets a limit on the number of concurrent connections to the database
 
@@ -25,7 +25,7 @@ CREATE SEQUENCE IF NOT EXISTS fts_id_seq;
 -- Creates the "robots" table
 CREATE TABLE IF NOT EXISTS robots (
     robot_id INTEGER DEFAULT NEXTVAL('robot_id_seq'::regclass) PRIMARY KEY,
-    robot_name TEXT,
+    robot_name TEXT UNIQUE,
     robot_description TEXT
 );
 
